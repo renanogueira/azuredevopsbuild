@@ -24,7 +24,8 @@ steps:
   inputs:
     sourcePath: 'android/'
     filePattern: 'build.gradle'
-    versionSource: 'buildNumber'
+    versionSource: 'variable'
+    customNumberVariable: 'versionName'
     versionFormat: 'threeParts'
     replaceVersionFormat: 'custom'
     customReplaceRegex: '\d+.\d+.\d+'
