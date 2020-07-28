@@ -33,5 +33,5 @@ steps:
     customReplaceRegex: '\d+.\d+.\d+'
   displayName: 'Fazendo um bump de versão'
 
-- script: echo "##vso[task.setvariable variable=testvar;]cat android/build.gradle"
+- script: cat android/build.gradle"
   displayName: 'Mostrando o cat'
