@@ -24,11 +24,12 @@ steps:
   inputs:
     sourcePath: 'android/'
     filePattern: 'build.gradle'
-    versionSource: 'variable'
-    customNumberVariable: 'versionName'
-    versionFormat: 'threeParts'
+    versionSource: 'buildNumber'
+    versionFormat: 'custom'
+    customBuildRegex: '(?:\d+.\d+.\d+.)(\d+)'
     replaceVersionFormat: 'custom'
-    customReplaceRegex: '\d+.\d+.\d+'
+    customReplaceRegex: 'versionName=“\d+.\d+.\d+'
+    replacePrefix: 'versionName=”'
   displayName: 'Fazendo um bump de versão'
 
 - script: cat android/build.gradle
