@@ -21,8 +21,14 @@ steps:
 - script: npm run test
   displayName: 'Run unit tests'
 
-- script: |
-    cd android
-    bundle install
-    fastlane build
-  displayName: 'Build Android'
+- task: VersionAssemblies@2
+  inputs:
+    sourcePath: 'android/'
+    filePattern: 'build.gradle'
+    versionSource: 'variable'
+    customNumberVariable: 'versionName'
+    versionFormat: 'custom'
+    customBuildRegex: '(?:\d+.\d+.\d+.)(\d+)'
+    replaceVersionFormat: 'custom'
+    customReplaceRegex: '\d+.\d+.\d+'
+  displayName: 'Fazendo um bump de versão'
