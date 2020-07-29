@@ -3,7 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-name: 1.0$(Rev:.r)
+name: 2.8$(Rev:.r)
 
 trigger:
 - master
@@ -25,15 +25,30 @@ steps:
 
 - task: VersionAssemblies@2
   inputs:
-    sourcePath: 'android/'
+    sourcePath: 'android/app/'
     filePattern: 'build.gradle'
     versionSource: 'buildNumber'
     versionFormat: 'custom'
     customBuildRegex: '(?:\d.\d.\d+)'
     replaceVersionFormat: 'custom'
-    customReplaceRegex: 'versionName = "\d.\d.\d+'
-    replacePrefix: 'versionName = "'
-  displayName: 'Fazendo um bump de versão'
+    customReplaceRegex: 'versionName "\d.\d.\d+'
+    replacePrefix: 'versionName "'
+  displayName: 'Android bump'
   
-- script: cat android/build.gradle
-  displayName: 'Mostrando o cat'
+- script: cat android/app/build.gradle
+  displayName: 'Android Build Cat'
+
+- task: VersionAssemblies@2
+  inputs:
+    sourcePath: 'ios/MyNewApp.xcodeproj/'
+    filePattern: 'project.pbxproj'
+    versionSource: 'buildNumber'
+    versionFormat: 'custom'
+    customBuildRegex: '(?:\d.\d.\d+)'
+    replaceVersionFormat: 'custom'
+    customReplaceRegex: 'MARKETING_VERSION = \d.\d.\d+'
+    replacePrefix: 'MARKETING_VERSION = '
+  displayName: 'iOS bump'
+
+- script: cat ios/MyNewApp.xcodeproj/project.pbxproj
+  displayName: 'iOS Build Cat'
