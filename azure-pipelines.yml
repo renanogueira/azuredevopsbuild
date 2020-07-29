@@ -5,8 +5,8 @@
 
 name: 2.8$(Rev:.r)
 
-trigger:
-- master
+pr:
+- homologacao
 
 pool:
   vmImage: 'macOS-latest'
