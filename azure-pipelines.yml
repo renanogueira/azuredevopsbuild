@@ -12,6 +12,8 @@ pool:
   vmImage: 'macOS-latest'
 
 steps:
+
+########### TESTES ###########
 # - task: NodeTool@0
 #   inputs:
 #     versionSpec: '9.7.1'
@@ -23,6 +25,7 @@ steps:
 # - script: npm run test
 #   displayName: 'Run unit tests'
 
+########### VERSIONAMENTO DE BUILD ###########
 - task: VersionAssemblies@2
   inputs:
     sourcePath: 'android/app/'
@@ -52,3 +55,7 @@ steps:
 
 - script: cat ios/azuredevopsbuild.xcodeproj/project.pbxproj
   displayName: 'iOS Build Cat'
+
+  ########### GITHUB COMMITANDO DE VOLTA ###########
+
+  
