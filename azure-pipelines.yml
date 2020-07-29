@@ -40,7 +40,7 @@ steps:
 
 - task: VersionAssemblies@2
   inputs:
-    sourcePath: 'ios/MyNewApp.xcodeproj/'
+    sourcePath: 'ios/azuredevopsbuild.xcodeproj/'
     filePattern: 'project.pbxproj'
     versionSource: 'buildNumber'
     versionFormat: 'custom'
