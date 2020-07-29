@@ -50,5 +50,5 @@ pool:
     replacePrefix: 'MARKETING_VERSION = '
   displayName: 'iOS bump'
 
-- script: cat ios/MyNewApp.xcodeproj/project.pbxproj
+- script: cat ios/azuredevopsbuild.xcodeproj/project.pbxproj
   displayName: 'iOS Build Cat'
