@@ -29,7 +29,7 @@ steps:
     filePattern: 'build.gradle'
     versionSource: 'buildNumber'
     versionFormat: 'custom'
-    customBuildRegex: '(?:\d.\d.\d+.)(\d+)'
+    customBuildRegex: '(?:\d.\d.\d+)'
     replaceVersionFormat: 'custom'
     customReplaceRegex: 'versionName = "\d.\d.\d+'
     replacePrefix: 'versionName = "'
