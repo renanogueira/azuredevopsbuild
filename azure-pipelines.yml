@@ -16,6 +16,8 @@ pr:
 steps:
 
 # Checkout no github
+- checkout: self
+  persistCredentials: true
 - script: git checkout $(Build.SourceBranchName)
   displayName: 'Checkout branch'
 
