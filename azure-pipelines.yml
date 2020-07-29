@@ -1,31 +1,34 @@
-# Node.js with React
-# Build a Node.js project that uses React.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# YAML criado para o processo de pull request na branch de homologação em
+# um projeto de aplicativo feito em React Native.
+# Os passos nesse processo serão:
+# Instalar as dependencias, realizar os testes no jest e, caso tudo tenha
+# ocorrido conforme desejado, irá subir a versão de build no Android e iOS.
+# Criado por Renan Serrão Nogueira
 
 name: 2.8$(Rev:.r)
-
-pr:
-- homologacao
 
 pool:
   vmImage: 'macOS-latest'
 
-steps:
+pr:
+- homologacao
 
-########### TESTES ###########
+steps:
+# Instalando o node
 # - task: NodeTool@0
 #   inputs:
 #     versionSpec: '9.7.1'
 #   displayName: 'Install Node'
 
+# Instalando as dependências
 # - script: npm install
 #   displayName: 'Install dependencies'
 
+# Realizando os testes
 # - script: npm run test
 #   displayName: 'Run unit tests'
 
-########### VERSIONAMENTO DE BUILD ###########
+# Subindo a versão do Android
 - task: VersionAssemblies@2
   inputs:
     sourcePath: 'android/app/'
@@ -38,9 +41,11 @@ steps:
     replacePrefix: 'versionName "'
   displayName: 'Android bump'
   
+# Log de saída após subir a versão do Android (Depuração)
 - script: cat android/app/build.gradle
   displayName: 'Android Build Cat'
 
+# Subindo a versão do iOS
 - task: VersionAssemblies@2
   inputs:
     sourcePath: 'ios/azuredevopsbuild.xcodeproj/'
@@ -53,9 +58,6 @@ steps:
     replacePrefix: 'MARKETING_VERSION = '
   displayName: 'iOS bump'
 
+# Log de saída após subir a versão do iOS (Depuração)
 - script: cat ios/azuredevopsbuild.xcodeproj/project.pbxproj
   displayName: 'iOS Build Cat'
-
-  ########### GITHUB COMMITANDO DE VOLTA ###########
-
-  
