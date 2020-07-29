@@ -55,7 +55,3 @@ steps:
 
 - script: cat ios/azuredevopsbuild.xcodeproj/project.pbxproj
   displayName: 'iOS Build Cat'
-
-  ########### GITHUB COMMITANDO DE VOLTA ###########
-
-  
