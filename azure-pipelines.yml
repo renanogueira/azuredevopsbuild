@@ -20,12 +20,13 @@ steps:
 
 # - script: npm run test
 #   displayName: 'Run unit tests'
+
 - task: VersionAssemblies@2
   inputs:
     sourcePath: 'android/'
     filePattern: 'build.gradle'
     versionSource: 'variable'
-    customNumberVariable: $(Build.BuildNumber)
+    customNumberVariable: 'Build.BuildNumber'
     versionFormat: 'custom'
     customBuildRegex: '(?:\d+.\d+.\d+)'
     replaceVersionFormat: 'custom'
