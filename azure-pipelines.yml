@@ -31,9 +31,11 @@ steps:
     versionFormat: 'custom'
     customBuildRegex: '(?:\d+)'
     replaceVersionFormat: 'custom'
-    customReplaceRegex: 'versionName = "\d+.\d+.\d+'
+    customReplaceRegex: 'versionName = "\d.\d.\d+'
     replacePrefix: 'versionName = "'
   displayName: 'Fazendo um bump de versão'
+
+
 
 - script: cat android/build.gradle
   displayName: 'Mostrando o cat'
