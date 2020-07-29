@@ -15,9 +15,12 @@ pr:
 
 steps:
 
-# Checkout no github
+# Dando permissões de checkout
 - checkout: self
   persistCredentials: true
+  displayName: 'Checkout permissions'
+
+# Checkout no Github
 - script: git checkout $(Build.SourceBranchName)
   displayName: 'Checkout branch'
 
