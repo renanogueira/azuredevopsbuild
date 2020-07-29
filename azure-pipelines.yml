@@ -46,8 +46,8 @@ steps:
     versionFormat: 'custom'
     customBuildRegex: '(?:\d.\d.\d+)'
     replaceVersionFormat: 'custom'
-    customReplaceRegex: 'MARKETING_VERSION = 2.\d.\d+'
-    replacePrefix: 'MARKETING_VERSION = 2.'
+    customReplaceRegex: 'MARKETING_VERSION = \d.\d.\d+'
+    replacePrefix: 'MARKETING_VERSION = '
   displayName: 'iOS bump'
 
 - script: cat ios/azuredevopsbuild.xcodeproj/project.pbxproj
