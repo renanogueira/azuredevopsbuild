@@ -12,16 +12,16 @@ pool:
   vmImage: 'macOS-latest'
 
 steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '9.7.1'
-#   displayName: 'Install Node'
+- task: NodeTool@0
+  inputs:
+    versionSpec: '9.7.1'
+  displayName: 'Install Node'
 
-# - script: npm install
-#   displayName: 'Install dependencies'
+- script: npm install
+  displayName: 'Install dependencies'
 
-# - script: npm run test
-#   displayName: 'Run unit tests'
+- script: npm run test
+  displayName: 'Run unit tests'
 
 - task: VersionAssemblies@2
   inputs:
@@ -34,8 +34,6 @@ steps:
     customReplaceRegex: 'versionName = "\d.\d.\d+'
     replacePrefix: 'versionName = "'
   displayName: 'Fazendo um bump de versão'
-
-
-
+  
 - script: cat android/build.gradle
   displayName: 'Mostrando o cat'
