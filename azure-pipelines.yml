@@ -12,7 +12,10 @@ pool:
   vmImage: 'macOS-latest'
 
 pr:
-- homologacao
+  autoCancel: false
+  branches:
+    include:
+    - homologacao
 
 steps:
 
