@@ -2,8 +2,9 @@
 # um projeto de aplicativo feito em React Native.
 # Os passos nesse processo serão:
 # Instalar as dependencias, realizar os testes no jest e, caso tudo tenha
-# ocorrido conforme desejado, irá subir a versão de build no Android e iOS.
-# Criado por Renan Serrão Nogueira
+# ocorrido conforme desejado, irá realizar um bump nas versões de build no 
+# Android e iOS e por último, fazer um push de volta para branch original
+# do pull request.
 
 name: 2.8$(Rev:.r)
 
@@ -15,40 +16,26 @@ pr:
 
 steps:
 
-# Dando permissões de checkout
 - checkout: self
   persistCredentials: true
   displayName: 'Checkout permissions'
 
-# - task: DownloadSecureFile@1
-#   inputs:
-#     secureFile: server.key
+- task: NodeTool@0
+  inputs:
+    versionSpec: '9.7.1'
+  displayName: 'Install Node'
 
-# # Add user do Github
-# - script: |
-#     git config --global user.email "$(Build.RequestedFor)"
-#     git config --global user.name "$(Build.RequestedForEmail)"
-#   displayName: 'Add git user config'
+- script: npm install
+  displayName: 'Install dependencies'
 
-# # Checkout no Github
-# - script: git checkout $(Build.SourceBranchName)
-#   displayName: 'Checkout branch'
+- script: npm run test
+  displayName: 'Run unit tests'
 
-# Instalando o node
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '9.7.1'
-#   displayName: 'Install Node'
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/clover.xml'
 
-# Instalando as dependências
-# - script: npm install
-#   displayName: 'Install dependencies'
-
-# Realizando os testes
-# - script: npm run test
-#   displayName: 'Run unit tests'
-
-# Subindo a versão do Android
 - task: VersionAssemblies@2
   inputs:
     sourcePath: 'android/app/'
@@ -59,13 +46,8 @@ steps:
     replaceVersionFormat: 'custom'
     customReplaceRegex: 'versionName "\d.\d.\d+'
     replacePrefix: 'versionName "'
-  displayName: 'Android bump'
-  
-# Log de saída após subir a versão do Android (Depuração)
-- script: cat android/app/build.gradle
-  displayName: 'Android Build Cat'
+  displayName: 'Realizar bump de versão no Android'
 
-# Subindo a versão do iOS
 - task: VersionAssemblies@2
   inputs:
     sourcePath: 'ios/azuredevopsbuild.xcodeproj/'
@@ -76,13 +58,8 @@ steps:
     replaceVersionFormat: 'custom'
     customReplaceRegex: 'MARKETING_VERSION = \d.\d.\d+'
     replacePrefix: 'MARKETING_VERSION = '
-  displayName: 'iOS bump'
+  displayName: 'Realizar bump de versão no iOS'
 
-# Log de saída após subir a versão do iOS (Depuração)
-- script: cat ios/azuredevopsbuild.xcodeproj/project.pbxproj
-  displayName: 'iOS Build Cat'
-
-# Github
 - script: |
     echo Adicionando credenciais
     git config --global user.email "tifitcard@gmail.com"
