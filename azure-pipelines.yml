@@ -20,9 +20,9 @@ steps:
   persistCredentials: true
   displayName: 'Checkout permissions'
 
-- task: DownloadSecureFile@1
-  inputs:
-    secureFile: server.key
+# - task: DownloadSecureFile@1
+#   inputs:
+#     secureFile: server.key
 
 # Add user do Github
 - script: |
