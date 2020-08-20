@@ -86,9 +86,9 @@ steps:
 - script: |
     git config --global user.email "tifitcard@gmail.com"
     git config --global user.name "Fitcard Azure Pipelines Agent"
-    git checkout $(Build.SourceBranchName)
+    git checkout -t HEAD:$(Build.SourceBranch)
     git add .
-    git status
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
+    git status
     git push origin HEAD:$(Build.SourceBranch)
   displayName: 'Pushing new version'
