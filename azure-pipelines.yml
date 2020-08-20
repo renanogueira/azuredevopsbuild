@@ -84,8 +84,8 @@ steps:
 
 # Github
 - script: |
-    git config --global user.email "$(Build.RequestedFor)"
-    git config --global user.name "$(Build.RequestedForEmail)"
+    git config --global user.email "tifitcard@gmail.com"
+    git config --global user.name "Fitcard Azure Pipelines Agent"
     git checkout -t $(Build.SourceBranchName)
     git add .
     git status
