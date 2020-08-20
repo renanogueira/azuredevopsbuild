@@ -84,11 +84,13 @@ steps:
 
 # Github
 - script: |
+    echo Adicionando credenciais
     git config --global user.email "tifitcard@gmail.com"
     git config --global user.name "Fitcard Azure Pipelines Agent"
-    git checkout -t HEAD:$(Build.SourceBranch)
+    echo Realizando o checkout da branch
+    git checkout -t $(Build.SourceBranch)
     git add .
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
     git status
-    git push origin HEAD:$(Build.SourceBranch)
+    git push origin HEAD:$(System.PullRequest.SourceBranch)
   displayName: 'Pushing new version'
