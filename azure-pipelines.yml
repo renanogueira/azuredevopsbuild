@@ -90,5 +90,5 @@ steps:
     git add .
     git status
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
-    git push
+    git push origin HEAD:$(Build.SourceBranchName)
   displayName: 'Pushing new version'
