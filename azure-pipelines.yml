@@ -20,9 +20,19 @@ steps:
   persistCredentials: true
   displayName: 'Checkout permissions'
 
-# Checkout no Github
-- script: git checkout $(Build.SourceBranchName)
-  displayName: 'Checkout branch'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: server.key
+
+# Add user do Github
+- script: |
+    git config --global user.email "$(Build.RequestedFor)"
+    git config --global user.name "$(Build.RequestedForEmail)"
+  displayName: 'Add git user config'
+
+# # Checkout no Github
+# - script: git checkout $(Build.SourceBranchName)
+#   displayName: 'Checkout branch'
 
 # Instalando o node
 # - task: NodeTool@0
@@ -74,9 +84,9 @@ steps:
 
 # Github
 - script: |
+    git checkout -t $(Build.SourceBranchName)
     git add .
-    git config --global user.name "$(Build.RequestedFor)"
-    git config --global user.email "$(Build.RequestedForEmail)"
-    git commit -m "$(Build.BuildId)"
-    git push origin $(Build.SourceBranchName)echo "good"
+    git status
+    git commit -m "Automated Pipeline script for build $(Build.BuildId)"
+    git push origin $(Build.SourceBranchName)
   displayName: 'Pushing new version'
