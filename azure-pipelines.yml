@@ -24,11 +24,11 @@ steps:
 #   inputs:
 #     secureFile: server.key
 
-# Add user do Github
-- script: |
-    git config --global user.email "$(Build.RequestedFor)"
-    git config --global user.name "$(Build.RequestedForEmail)"
-  displayName: 'Add git user config'
+# # Add user do Github
+# - script: |
+#     git config --global user.email "$(Build.RequestedFor)"
+#     git config --global user.name "$(Build.RequestedForEmail)"
+#   displayName: 'Add git user config'
 
 # # Checkout no Github
 # - script: git checkout $(Build.SourceBranchName)
@@ -84,6 +84,8 @@ steps:
 
 # Github
 - script: |
+    git config --global user.email "$(Build.RequestedFor)"
+    git config --global user.name "$(Build.RequestedForEmail)"
     git checkout -t $(Build.SourceBranchName)
     git add .
     git status
