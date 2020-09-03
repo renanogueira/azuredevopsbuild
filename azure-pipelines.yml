@@ -15,7 +15,7 @@ pr:
   autoCancel: false
   branches:
     include:
-    - homologacao
+    - homologacao-aux
 
 steps:
 
