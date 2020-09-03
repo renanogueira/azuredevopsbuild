@@ -16,6 +16,10 @@ pr:
   branches:
     include:
     - homologacao
+  paths:
+    exclude:
+    - ios/azuredevopsbuild.xcodeproj/project.pbxproj
+    - android/app/build.gradle
 
 steps:
 
