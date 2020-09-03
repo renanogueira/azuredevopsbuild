@@ -72,5 +72,5 @@ steps:
     git add .
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
     git status
-    git push origin HEAD:$(System.PullRequest.SourceBranch)
+    git push origin HEAD:$(System.PullRequest.SourceBranch):homologacao
   displayName: 'Pushing new version'
