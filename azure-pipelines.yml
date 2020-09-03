@@ -1,1 +1,76 @@
-#
+# YAML criado para o processo de pull request na branch de homologação em
+# um projeto de aplicativo feito em React Native.
+# Os passos nesse processo serão:
+# Instalar as dependencias, realizar os testes no jest e, caso tudo tenha
+# ocorrido conforme desejado, irá realizar um bump nas versões de build no 
+# Android e iOS e por último, fazer um push de volta para branch original
+# do pull request.
+
+name: 2.8$(Rev:.r)
+
+pool:
+  vmImage: 'macOS-latest'
+
+pr:
+  autoCancel: false
+  branches:
+    include:
+    - homologacao-aux
+
+steps:
+
+- checkout: self
+  persistCredentials: true
+  displayName: 'Checkout permissions'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '9.7.1'
+  displayName: 'Install Node'
+
+- script: npm install
+  displayName: 'Install dependencies'
+
+- script: npm run test
+  displayName: 'Run unit tests'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+
+- task: VersionAssemblies@2
+  inputs:
+    sourcePath: 'android/app/'
+    filePattern: 'build.gradle'
+    versionSource: 'buildNumber'
+    versionFormat: 'custom'
+    customBuildRegex: '(?:\d.\d.\d+)'
+    replaceVersionFormat: 'custom'
+    customReplaceRegex: 'versionName "\d.\d.\d+'
+    replacePrefix: 'versionName "'
+  displayName: 'Realizar bump de versão no Android'
+
+- task: VersionAssemblies@2
+  inputs:
+    sourcePath: 'ios/azuredevopsbuild.xcodeproj/'
+    filePattern: 'project.pbxproj'
+    versionSource: 'buildNumber'
+    versionFormat: 'custom'
+    customBuildRegex: '(?:\d.\d.\d+)'
+    replaceVersionFormat: 'custom'
+    customReplaceRegex: 'MARKETING_VERSION = \d.\d.\d+'
+    replacePrefix: 'MARKETING_VERSION = '
+  displayName: 'Realizar bump de versão no iOS'
+
+- script: |
+    echo Adicionando credenciais
+    git config --global user.email "tifitcard@gmail.com"
+    git config --global user.name "Fitcard Azure Pipelines Agent"
+    echo Realizando o checkout da branch
+    git checkout -t $(Build.SourceBranch)
+    git add .
+    git commit -m "Automated Pipeline script for build $(Build.BuildId)"
+    git status
+    git push origin HEAD:$(System.PullRequest.SourceBranch):homologacao
+  displayName: 'Pushing new version'
