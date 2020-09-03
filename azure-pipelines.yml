@@ -11,15 +11,11 @@ name: 2.8$(Rev:.r)
 pool:
   vmImage: 'macOS-latest'
 
-# pr:
-#   autoCancel: false
-#   branches:
-#     include:
-#     - homologacao
-#   paths:
-#     exclude:
-#     - ios/azuredevopsbuild.xcodeproj/project.pbxproj
-#     - android/app/build.gradle
+pr:
+  autoCancel: false
+  branches:
+    include:
+    - homologacao
 
 steps:
 
