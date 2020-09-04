@@ -68,7 +68,7 @@ steps:
     git config --global user.email "tifitcard@gmail.com"
     git config --global user.name "Fitcard Azure Pipelines Agent"
     echo Realizando o checkout da branch
-    git checkout -t HEAD:$(System.PullRequest.SourceBranch)
+    git checkout -t $(System.PullRequest.SourceBranch)
     git add .
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
     git status
