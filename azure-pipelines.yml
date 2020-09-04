@@ -21,6 +21,7 @@ steps:
 
 - checkout: self
   persistCredentials: true
+  clean: true
   displayName: 'Checkout permissions'
 
 # - task: NodeTool@0
@@ -68,6 +69,7 @@ steps:
     git config --global user.email "tifitcard@gmail.com"
     git config --global user.name "Fitcard Azure Pipelines Agent"
     echo Realizando o checkout da branch
+    echo $(System.PullRequest.SourceBranch)
     git checkout -t $(System.PullRequest.SourceBranch)
     git add .
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
