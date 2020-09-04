@@ -76,30 +76,15 @@ steps:
 #     git push origin $(System.PullRequest.SourceBranch):homologacao
 #   displayName: 'Pushing new version'
   
-# - script: |
-#     echo Adicionando credenciais
-#     git config --global user.email "tifitcard@gmail.com"
-#     git config --global user.name "Fitcard Azure Pipelines Agent"
-#     echo Realizando o checkout da branch: $(Build.SourceBranch)
-#     git checkout -t $(Build.SourceBranch)
-#     git add .
-#     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
-#     git status
-#     echo Realizando o push na branch: $(System.PullRequest.SourceBranch)
-#     git push origin HEAD:$(System.PullRequest.SourceBranch):homologacao
-#   displayName: 'Pushing new version'
-
 - script: |
     echo Adicionando credenciais
     git config --global user.email "tifitcard@gmail.com"
     git config --global user.name "Fitcard Azure Pipelines Agent"
-    git fetch origin +refs/pull/*:refs/remotes/origin/pr/*
     echo Realizando o checkout da branch: $(Build.SourceBranch)
-    git checkout -b $(Build.SourceBranch) $(Build.SourceBranch)
+    git checkout -t $(Build.SourceBranch)
     git add .
-    git commit -m "Automated Pipeline script for build $(Build.BuildId)"
+    git commit -m "Automated Pipeline script for build $(Build.BuildId) [skip ci]"
     git status
     echo Realizando o push na branch: $(System.PullRequest.SourceBranch)
-    git push origin HEAD:$(Build.SourceBranch)
+    git push origin HEAD:$(System.PullRequest.SourceBranch)
   displayName: 'Pushing new version'
-  
