@@ -64,14 +64,27 @@ steps:
     replacePrefix: 'MARKETING_VERSION = '
   displayName: 'Realizar bump de versão no iOS'
 
+# - script: |
+#     echo Adicionando credenciais
+#     git config --global user.email "tifitcard@gmail.com"
+#     git config --global user.name "Fitcard Azure Pipelines Agent"
+#     echo Realizando o checkout da branch $(System.PullRequest.SourceBranch)
+#     git checkout $(System.PullRequest.SourceBranch)
+#     git add .
+#     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
+#     git status
+#     git push origin $(System.PullRequest.SourceBranch):homologacao
+#   displayName: 'Pushing new version'
+  
 - script: |
     echo Adicionando credenciais
     git config --global user.email "tifitcard@gmail.com"
     git config --global user.name "Fitcard Azure Pipelines Agent"
-    echo Realizando o checkout da branch $(System.PullRequest.SourceBranch)
-    git checkout $(System.PullRequest.SourceBranch)
+    echo Realizando o checkout da branch: $(Build.SourceBranch)
+    git checkout -t $(Build.SourceBranch)
     git add .
     git commit -m "Automated Pipeline script for build $(Build.BuildId)"
     git status
-    git push origin $(System.PullRequest.SourceBranch):homologacao
+    echo Realizando o push na branch: $(System.PullRequest.SourceBranch)
+    git push origin HEAD:$(System.PullRequest.SourceBranch)
   displayName: 'Pushing new version'
