@@ -1015,7 +1015,7 @@
 				DEVELOPMENT_TEAM = 54ZUV7JJ92;
 				INFOPLIST_FILE = MyNewApp/InfoLink.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION =2.8.174;
+				MARKETING_VERSION =2.8.175;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1037,7 +1037,7 @@
 				DEVELOPMENT_TEAM = SGF7D4MCTF;
 				INFOPLIST_FILE = MyNewApp/InfoNeo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION =2.8.174;
+				MARKETING_VERSION =2.8.175;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1059,7 +1059,7 @@
 				DEVELOPMENT_TEAM = 7J3R4G8WM3;
 				INFOPLIST_FILE = MyNewApp/InfoPrime.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION =2.8.174;
+				MARKETING_VERSION =2.8.175;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1126,7 +1126,7 @@
 				DEVELOPMENT_TEAM = 54ZUV7JJ92;
 				INFOPLIST_FILE = MyNewApp/InfoLink.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION =2.8.174;
+				MARKETING_VERSION =2.8.175;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1147,7 +1147,7 @@
 				DEVELOPMENT_TEAM = SGF7D4MCTF;
 				INFOPLIST_FILE = MyNewApp/InfoNeo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION =2.8.174;
+				MARKETING_VERSION =2.8.175;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1168,7 +1168,7 @@
 				DEVELOPMENT_TEAM = 7J3R4G8WM3;
 				INFOPLIST_FILE = MyNewApp/InfoPrime.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION =2.8.174;
+				MARKETING_VERSION =2.8.175;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
