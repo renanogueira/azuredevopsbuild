@@ -24,13 +24,13 @@ steps:
   clean: true
   displayName: 'Checkout permissions'
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '9.7.1'
-  displayName: 'Install Node'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '9.7.1'
+#   displayName: 'Install Node'
 
-- script: npm install
-  displayName: 'Install dependencies'
+# - script: npm install
+#   displayName: 'Install dependencies'
 
 # - script: npm run test
 #   displayName: 'Run unit tests'
@@ -60,7 +60,7 @@ steps:
     versionFormat: 'custom'
     customBuildRegex: '(?:\d.\d.\d+)'
     replaceVersionFormat: 'custom'
-    customReplaceRegex: 'MARKETING_VERSION = \d.\d.\d+'
+    customReplaceRegex: 'MARKETING_VERSION\s*=\s*\d.\d.\d+'
     replacePrefix: 'MARKETING_VERSION = '
   displayName: 'Realizar bump de versão no iOS'
 
@@ -86,5 +86,5 @@ steps:
     git commit -m "Automated Pipeline script for build $(Build.BuildId) [skip ci]"
     git status
     echo Realizando o push na branch: $(System.PullRequest.SourceBranch)
-    git push origin HEAD:$(System.PullRequest.SourceBranch) [skip ci]
+    git push origin HEAD:$(System.PullRequest.SourceBranch)
   displayName: 'Pushing new version'
